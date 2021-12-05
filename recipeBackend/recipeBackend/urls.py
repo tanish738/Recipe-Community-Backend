@@ -21,7 +21,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('login-signup/', include('loginSignup.urls')),
+
     path('main/', include('main.urls'))
 ]
 

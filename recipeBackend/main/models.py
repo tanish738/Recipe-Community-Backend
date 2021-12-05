@@ -2,7 +2,6 @@ from django.db import models
 from loginSignup.models import MyUser
 # Create your models here.
 
-
 def upload_path_handler(instance, filename): 
     return "Recipe_Image/{title}/{file}".format(
         title=instance.Recipe.recipe_name, file=filename
@@ -83,9 +82,10 @@ class Recipe(models.Model):
 
 #FAQ's will be general for v1
 class Faqs(models.Model):
-    question_id = models.AutoField(primary_key=True)
-    question    = models.CharField(max_length=255)
-    answer=models.TextField(null=False,blank=False)
-    def __str__(self):
-        return self.question
+  question_id = models.AutoField(primary_key=True)
+  question    = models.CharField(max_length=255)
+  answer=models.TextField(null=False,blank=False)
+  def __str__(self):
+    return self.question
+
 
