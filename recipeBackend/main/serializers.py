@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Region, Recipe, Ingredients, Faqs
-
+from .models import *
+"""
 class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = '__all__'
-
+"""
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
