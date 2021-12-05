@@ -9,13 +9,23 @@ def upload_path_handler(instance, filename):
     )
 
 
-"""
-class Region(models.Model):
+
+class Region:
     region_id   = models.AutoField(primary_key=True)
     region_name = models.CharField(max_length=50,choices=REGION_CHOICES)
     def __str__(self):
         return self.region_name
-        """
+
+#For v2
+# class Category:
+#     category_id   = models.AutoField(primary_key=True)
+#     category_name = models.CharField(max_length=50)#Eg-Breakfast,Lunch etc.
+#     def __str__(self):
+#         return self.category_name
+
+
+
+
 
 #For v2
 # class Category:
@@ -83,7 +93,7 @@ class Recipe(models.Model):
 
 #FAQ's will be general for v1
 class Faqs(models.Model):
-    question_id = models.AutoField(primary_key=True)
+   question_id = models.AutoField(primary_key=True)
     question    = models.CharField(max_length=255)
     answer=models.TextField(null=False,blank=False)
     def __str__(self):
