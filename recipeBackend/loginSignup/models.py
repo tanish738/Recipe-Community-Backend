@@ -25,12 +25,14 @@ class MyUser(AbstractUser):
     last_name       = models.CharField(max_length = 100, blank = True)
     profile_picture = models.ImageField(default = "default_user_profile.png", upload_to = upload_path_handler) 
     Created         = models.DateTimeField(null = True, blank = False, auto_now_add = True)
-    is_active       = models.BooleanField(default = False) #so that we can activate using SMTP
+    # KEEP IT DEFAULT TRUE
+    is_active       = models.BooleanField(default = True) #so that we can activate using SMTP # keep it true until running the server
     is_chef         = models.BooleanField(default = False) #for V2
     bio             = models.TextField(blank = True)
     slug            = models.SlugField(max_length=100, unique=True)
 
     USERNAME_FIELD = 'email' #login signup with email instead of username
+    REQUIRED_FIELDS=['username']#admin creation
     
 
     def __str__(self):
