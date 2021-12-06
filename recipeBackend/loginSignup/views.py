@@ -15,6 +15,15 @@ from rest_framework import generics
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
+#for token 
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
+#Mail
+from django.core.mail import send_mail
+
 # Create your views here.
 
 
@@ -42,3 +51,25 @@ class CustomLogin(ObtainAuthToken):
             'email': user.email
         })
 
+def emailauth(request,pk):
+    context={"pk":pk}
+    if request.method=="POST":
+        for token in Token.objects.all():
+            if str(token)==pk:
+                token.delete()
+                Token.objects.create(user=token.user)
+                #return redirect('login page url frontend')
+        
+    return render(request,"email.html",context)
+
+
+@receiver(post_save, sender = settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance = None, created = False, **kwargs):
+    if created:
+        token=Token.objects.create(user = instance)
+        subject="Recipe Community"
+        url="http://127.0.0.1:8000/login-signup/token/"+str(token)+"/"
+        message = "Thank you for logging in Recipe Community please verify your email."+url
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [instance.email, ]
+        send_mail( subject, message, email_from, recipient_list )
