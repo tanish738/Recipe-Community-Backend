@@ -13,6 +13,9 @@ from .models import *
 #FOR SERILAZERS 
 from .serializers import *
 
+
+
+
 # Create your views here.
 
 class RecipeApi(generics.ListCreateAPIView):
@@ -42,3 +45,9 @@ class IngredientsApi(generics.ListCreateAPIView):
 class FAQsApi(generics.ListCreateAPIView):
     queryset=Faqs.objects.all()
     serializer_class=FaqsSerializer
+
+
+#function to create token for new user
+
+
+
