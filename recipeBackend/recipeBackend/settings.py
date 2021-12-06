@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     #added apps
     'loginSignup.apps.LoginsignupConfig',
     'main.apps.MainConfig',
+
+    #added SwaggerDocs
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
