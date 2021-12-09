@@ -2,35 +2,10 @@ from django.db import models
 from loginSignup.models import MyUser
 # Create your models here.
 
-
 def upload_path_handler(instance, filename): 
     return "Recipe_Image/{title}/{file}".format(
         title=instance.Recipe.recipe_name, file=filename
     )
-
-
-
-
-#For v2
-# class Category:
-#     category_id   = models.AutoField(primary_key=True)
-#     category_name = models.CharField(max_length=50)#Eg-Breakfast,Lunch etc.
-#     def __str__(self):
-#         return self.category_name
-
-class Ingredients:
-    ingredient_id   = models.AutoField(primary_key=True)
-    ingredient_name = models.CharField(max_length=50)
-    def __str__(self):
-        return self.ingredient_name
-
-
-def upload_path_handler(instance, filename): 
-    return "Recipe_Image/{title}/{file}".format(
-        title=instance.Recipe.recipe_name, file=filename
-    )
-
-
 """
 class Region(models.Model):
     region_id   = models.AutoField(primary_key=True)
@@ -38,7 +13,6 @@ class Region(models.Model):
     def __str__(self):
         return self.region_name
         """
-
 #For v2
 # class Category:
 #     category_id   = models.AutoField(primary_key=True)
@@ -90,13 +64,13 @@ class Recipe(models.Model):
     #used_by            = models.ManyToManyField(MyUser)
     owned_by           = models.ForeignKey(MyUser,on_delete=models.CASCADE)
     recipe_name        = models.CharField(max_length=255)
-    recipe_ingredients = models.ManyToManyField(Ingredients)
+    recipe_ingredients = models.ManyToManyField(Ingredients) #make this a foreign key
     recipe_steps       = models.TextField()
     recipe_image       = models.ImageField(null=True,blank=True)
     recipe_description = models.TextField()
     #recipe_category   = models.ForeignKey(Category)
     recipe_region      = models.CharField(max_length=255,choices=REGION_CHOICES,default='No State')
-    cooking_time       = models.TimeField()
+    cooking_time       = models.TimeField() #should make this into a integer or decimal field 
     recipe_added_at    = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.recipe_name

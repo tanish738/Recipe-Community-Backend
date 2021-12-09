@@ -18,7 +18,8 @@ from .serializers import *
 
 # Create your views here.
 
-class RecipeApi(generics.ListCreateAPIView):
+#what to do for the ingredients field and model??
+class RecipeApi(generics.ListCreateAPIView): #will have to use FBV to set the owned by field diectly by token
     queryset =Recipe.objects.all()
     serializer_class = RecipeSerializer
 
