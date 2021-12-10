@@ -4,7 +4,8 @@ from django.urls import path,include
 from . import views
 
 urlpatterns=[
-    path('register/',views.RegisterApi.as_view()),
-    path('login/',views.CustomLogin.as_view()),
-    path('token/<str:pk>/',views.emailauth),
+    path('register/',views.reqistration_view, name = "reqistration-view"),
+    path('login/',views.login, name = "login"),
+    path('all-users/',views.myUsers, name = "retrieve all users"),
+    path('email-verify/',views.verifyEmail, name = "verifyEmail"),
 ]
