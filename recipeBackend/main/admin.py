@@ -5,9 +5,7 @@ from main.models import *
 
 admin.site.register(Recipe)
 
-@admin.register(Ingredients)
-class IngredientsModelAdmin(admin.ModelAdmin):
-    list_display=('ingredient_id','ingredient_name')
+admin.site.register(Ingredients)
 
 # @admin.register(Category)
 # class CategoryModelAdmin(admin.ModelAdmin):
